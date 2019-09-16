@@ -3,7 +3,7 @@ import * as serviceWorker from './serviceWorker';
 
 import App from './App';
 
-import './index.css';
+import './static/styles/index.css';
 
 render(<App />, document.getElementById('root'));
 
