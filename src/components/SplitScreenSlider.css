@@ -1,0 +1,9 @@
+.split-screen-slider {
+  --delta: 50%;
+  --skew: calc(50vw + 1000px);
+
+  position: relative;
+  width: 100%;
+  min-height: 40vw;
+  overflow: hidden;
+}
