@@ -1,0 +1,12 @@
+.split-screen-slider-handle {
+  position: absolute;
+  height: 200%;
+  display: block;
+  background-color: #fdab00;
+  width: 0.25rem;
+  top: 50%;
+  left: var(--delta);
+  z-index: 3;
+  transform: rotate(30deg) translateY(-50%);
+  transform-origin: top;
+}
