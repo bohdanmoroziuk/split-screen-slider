@@ -12,6 +12,7 @@ const handleMouseMove = (instance, event) => {
     skew: delta + instance.indent
   });
 };
+
 export default class SplitScreenSlider extends Component {
   indent = 1000;
 
