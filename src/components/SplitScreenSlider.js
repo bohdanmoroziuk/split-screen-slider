@@ -1,23 +1,27 @@
-import { Component } from 'inferno';
+import { Component, linkEvent } from 'inferno';
 import './SplitScreenSlider.css';
 
 import SplitScreenSliderLayer from './SplitScreenSliderLayer';
 import SplitScreenSliderHandle from './SplitScreenSliderHandle';
 
+const handleMouseMove = (instance, event) => {
+  const delta = instance.recalculateDelta(event.clientX);
+
+  instance.setState({
+    delta,
+    skew: delta + instance.indent
+  });
+};
 export default class SplitScreenSlider extends Component {
+  indent = 1000;
+
   state = {
-    delta: 1000,
-    skew: 2000,
+    delta: this.indent,
+    skew: this.indent * 2,
   };
 
-  handleMouseMove = event => {
-    const delta = ((event.clientX - window.innerWidth / 2) * 0.5) + event.clientX;
-    const skew = delta + 1000;
-
-    this.setState({
-      delta,
-      skew
-    });
+  recalculateDelta = (x) => {
+    return ((x - window.innerWidth / 2) * 0.5) + x;
   };
 
   renderLayer = layer => (
@@ -42,16 +46,14 @@ export default class SplitScreenSlider extends Component {
     const { layers } = this.props;
 
     return (
-      <div className="app">
-        <section
-          className="split-screen-slider"
-          onMouseMove={this.handleMouseMove}
-          style={this.computedStyle}
-        >
-          {layers.map(this.renderLayer)}
-          <SplitScreenSliderHandle />
-        </section>
-      </div>
+      <section
+        className="split-screen-slider"
+        onMouseMove={linkEvent(this, handleMouseMove)}
+        style={this.computedStyle}
+      >
+        {layers.map(this.renderLayer)}
+        <SplitScreenSliderHandle />
+      </section>
     );
   }
 }
