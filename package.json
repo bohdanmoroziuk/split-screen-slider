@@ -1,6 +1,7 @@
 {
   "name": "split-screen-slider",
   "version": "0.1.0",
+  "description": "Split screen slider created using Inferno.js",
   "private": true,
   "dependencies": {
     "inferno": "^7.3.1",
